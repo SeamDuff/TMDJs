@@ -122,6 +122,88 @@ nav a {
 nav a:hover { color: var(--accent); }
 
 /* ── Hero ──────────────────────────────────── */
+/* ── Banner inicial (full-bleed) ──────────── */
+.banner-hero {
+  position: relative;
+  width: 100%;
+  min-height: 88vh;
+  background:
+    linear-gradient(180deg, rgba(20, 17, 15, 0.35) 0%, rgba(20, 17, 15, 0.55) 55%, rgba(20, 17, 15, 0.82) 100%),
+    url('./hero-tommy.jpg') center/cover,
+    #14110F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+.banner-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 60%, rgba(212, 160, 95, 0.16) 0%, transparent 60%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.banner-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1100px;
+  padding: 0 40px;
+}
+.banner-hero-meta {
+  color: var(--on-dark-soft);
+  margin-bottom: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.banner-hero-meta .accent { color: var(--accent); }
+.banner-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(54px, 9.5vw, 148px);
+  font-weight: 300;
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+  color: var(--on-dark);
+  margin-bottom: 40px;
+}
+.banner-hero-title em { font-style: italic; font-weight: 300; color: var(--accent); }
+.banner-hero-lead {
+  font-size: 17px;
+  color: var(--on-dark-soft);
+  margin: 0 auto 56px;
+  max-width: 52ch;
+  line-height: 1.65;
+}
+.banner-hero-scroll {
+  color: var(--accent);
+  letter-spacing: 0.22em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.banner-hero-scroll::after {
+  content: '↓';
+  font-size: 14px;
+  animation: scroll-hint 2s ease-in-out infinite;
+}
+@keyframes scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(6px); opacity: 0.5; }
+}
+
+/* Units intro section */
+.units-section {
+  padding: 140px 40px 100px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* ── Hero (legacy, no longer used but kept for safety) ── */
 .hero {
   padding: 140px 40px 120px;
   max-width: 1320px;
@@ -989,6 +1071,10 @@ footer {
   .hero-content { padding-left: 0; }
   .hero::before { display: none; }
   .hero-media { min-height: 380px; }
+  .banner-hero { min-height: 70vh; }
+  .banner-hero-content { padding: 0 24px; }
+  .banner-hero-lead { margin-bottom: 36px; }
+  .units-section { padding: 80px 24px; }
   section, .cream-section .wrap, .latm-section .wrap { padding: 100px 24px; }
   .brand-strip { padding: 40px 24px 0; }
   .brand-strip-list { gap: 20px 28px; }
@@ -1021,57 +1107,45 @@ footer {
   </nav>
 </header>
 
-<section class="hero">
-  <div class="hero-grid">
-    <div class="hero-content">
-      <div class="hero-meta mono">
-        <span><span class="accent">↳</span> Tres unidades</span>
-        <span>Buenos Aires — mundo</span>
-      </div>
-      <h1 class="hero-title">Hacemos los <em>eventos</em><br>que se recuerdan.</h1>
-      <p class="hero-lead">Treinta años produciendo música y entretenimiento. DJ profesional, formación con Tommy y la fiesta itinerante para mayores de 35.</p>
-
-      <div class="unit-list">
-        <a href="#djs" class="unit-row">
-          <span class="unit-num mono">01</span>
-          <span class="unit-name"><em>TM DJs</em></span>
-          <span class="unit-desc">Servicios de DJ profesional para casamientos, corporativos y eventos especiales.</span>
-          <span class="unit-arrow">→</span>
-        </a>
-        <a href="#cursos" class="unit-row">
-          <span class="unit-num mono">02</span>
-          <span class="unit-name"><em>Cursos</em></span>
-          <span class="unit-desc">Formación profesional con tres décadas de experiencia.</span>
-          <span class="unit-arrow">→</span>
-        </a>
-        <a href="#latm" class="unit-row">
-          <span class="unit-num mono">03</span>
-          <span class="unit-name"><em>LaTM</em></span>
-          <span class="unit-desc">La fiesta itinerante. Argentina, Uruguay, España y más.</span>
-          <span class="unit-arrow">→</span>
-        </a>
-      </div>
+<section class="banner-hero">
+  <div class="banner-hero-content">
+    <div class="banner-hero-meta mono">
+      <span class="accent">↳</span> Tommy Muñoz · Est. 1995
     </div>
+    <h1 class="banner-hero-title">Hacemos los <em>eventos</em><br>que se recuerdan.</h1>
+    <p class="banner-hero-lead">Treinta años produciendo música y entretenimiento. DJ profesional, formación con Tommy y la fiesta itinerante para mayores de 35.</p>
+    <div class="banner-hero-scroll mono">Conocé las tres unidades</div>
+  </div>
+</section>
 
-    <div class="hero-media">
-      <div class="hero-media-label">
-        <span class="dot"></span>
-        Reel · 2026
-      </div>
-      <div class="hero-media-center">
-        <div class="hero-media-play" aria-label="Reproducir reel">
-          <svg viewBox="0 0 20 20" aria-hidden="true">
-            <path d="M5 2v16l14-8L5 2z"/>
-          </svg>
-        </div>
-        <div class="hero-media-title">Tres décadas <em>en escena.</em></div>
-        <div class="hero-media-sub">1:24 · Showreel</div>
-      </div>
-      <div class="hero-media-bottom">
-        <span>Tommy Muñoz</span>
-        <span>Live · BA</span>
-      </div>
+<section class="units-section">
+  <div class="section-head">
+    <div>
+      <div class="section-meta mono"><span class="accent">↳</span><span>El proyecto</span></div>
+      <h2 class="section-title">Tres unidades, <em>una marca.</em></h2>
     </div>
+    <p class="section-lead">Cada unidad funciona por su cuenta pero comparten el ADN: música, atención al detalle, y tres décadas haciendo que las cosas pasen como tienen que pasar.</p>
+  </div>
+
+  <div class="unit-list">
+    <a href="#djs" class="unit-row">
+      <span class="unit-num mono">01</span>
+      <span class="unit-name"><em>TM DJs</em></span>
+      <span class="unit-desc">Servicios de DJ profesional para casamientos, corporativos y eventos especiales.</span>
+      <span class="unit-arrow">→</span>
+    </a>
+    <a href="#cursos" class="unit-row">
+      <span class="unit-num mono">02</span>
+      <span class="unit-name"><em>Cursos</em></span>
+      <span class="unit-desc">Formación profesional con tres décadas de experiencia.</span>
+      <span class="unit-arrow">→</span>
+    </a>
+    <a href="#latm" class="unit-row">
+      <span class="unit-num mono">03</span>
+      <span class="unit-name"><em>LaTM</em></span>
+      <span class="unit-desc">La fiesta itinerante. Argentina, Uruguay, España y más.</span>
+      <span class="unit-arrow">→</span>
+    </a>
   </div>
 </section>
 
