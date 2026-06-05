@@ -39,7 +39,7 @@
   /* ============================================================
      00 · INTRO — cold open con video (o imagen fallback)
      ============================================================ */
-  .intro {
+  .coldopen {
     position: fixed;
     inset: 0;
     z-index: 300;
@@ -48,11 +48,11 @@
     transition: opacity 0.9s var(--ease);
   }
 
-  .intro.saliendo { opacity: 0; pointer-events: none; }
-  .intro.oculto { display: none; }
+  .coldopen.saliendo { opacity: 0; pointer-events: none; }
+  .coldopen.oculto { display: none; }
 
-  .intro video,
-  .intro .intro-img {
+  .coldopen video,
+  .coldopen .intro-img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -61,7 +61,7 @@
     filter: grayscale(1) contrast(1.05);
   }
 
-  .intro .intro-img {
+  .coldopen .intro-img {
     background-image: url('./latm-crowd.jpg');
     background-size: cover;
     background-position: center;
@@ -73,13 +73,13 @@
     to { transform: scale(1); }
   }
 
-  .intro .velo {
+  .coldopen .velo {
     position: absolute;
     inset: 0;
     background: rgba(10,9,8,0.55);
   }
 
-  .intro .marca {
+  .coldopen .marca {
     position: absolute;
     inset: 0;
     display: flex;
@@ -89,7 +89,7 @@
     gap: 18px;
   }
 
-  .intro .marca .tm-grande {
+  .coldopen .marca .tm-grande {
     font-size: clamp(64px, 12vw, 160px);
     font-weight: 900;
     letter-spacing: -0.04em;
@@ -98,7 +98,7 @@
     animation: subir 1.2s var(--ease) 0.4s forwards;
   }
 
-  .intro .marca .sub-intro {
+  .coldopen .marca .sub-intro {
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.2em;
@@ -108,7 +108,7 @@
     animation: subir 1s var(--ease) 0.9s forwards;
   }
 
-  .intro .saltar {
+  .coldopen .saltar {
     position: absolute;
     bottom: 28px;
     right: 28px;
@@ -125,12 +125,12 @@
     transition: all 0.3s var(--ease);
   }
 
-  .intro .saltar:hover {
+  .coldopen .saltar:hover {
     border-color: var(--blanco);
     color: var(--blanco);
   }
 
-  .intro .progreso {
+  .coldopen .progreso {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -444,6 +444,7 @@
      ============================================================ */
   .seccion {
     padding: clamp(90px, 13vh, 150px) clamp(20px, 4vw, 56px);
+    scroll-margin-top: 90px;
   }
 
   .inner { max-width: 1280px; margin: 0 auto; }
@@ -1154,7 +1155,7 @@
 <body>
 
 <!-- 00 · INTRO -->
-<div class="intro" id="intro">
+<div class="coldopen" id="intro">
   <!-- Cuando tengas el video: descomentá y poné el path. El fallback de imagen se desactiva solo. -->
   <!-- <video id="intro-video" autoplay muted playsinline preload="auto" src="./intro.mp4"></video> -->
   <div class="intro-img" id="intro-img"></div>
