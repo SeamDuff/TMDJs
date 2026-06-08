@@ -641,26 +641,34 @@
   }
 
   .brands .logos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(8px, 1.5vw, 20px);
+    align-items: center;
+  }
+
+  .brands .logos a {
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: clamp(28px, 5vw, 72px);
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--linea);
+    transition: background 0.4s var(--ease);
   }
+  .clara .brands .logos a:hover { background: rgba(10,9,8,0.04); }
 
-  .brands .logos span {
-    font-size: clamp(16px, 2vw, 24px);
-    opacity: 0.85;
-    transition: opacity 0.3s var(--ease);
-    white-space: nowrap;
+  .brands .logos img {
+    max-width: 62%;
+    max-height: 52%;
+    object-fit: contain;
+    opacity: 0.5;
+    transition: opacity 0.4s var(--ease);
   }
-  .brands .logos span:hover { opacity: 0.4; }
+  .brands .logos a:hover img { opacity: 1; }
 
-  .b-meli { font-weight: 700; letter-spacing: -0.02em; }
-  .b-on { font-weight: 900; letter-spacing: 0.02em; }
-  .b-nike { font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -0.01em; }
-  .b-river { font-weight: 800; letter-spacing: 0.12em; }
-  .b-disney { font-weight: 500; letter-spacing: -0.01em; }
-  .b-star { font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; }
+  @media (max-width: 760px) {
+    .brands .logos { grid-template-columns: repeat(3, 1fr); }
+  }
 
   /* Próximas camadas */
   .camadas {
@@ -719,10 +727,21 @@
     filter: grayscale(1) contrast(1.05);
   }
 
+  .banner-mid .bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+    z-index: 1;
+  }
+
   .banner-mid .overlay {
     position: absolute;
     inset: 0;
     background: rgba(10,9,8,0.72);
+    z-index: 1;
   }
 
   .banner-mid .frase {
@@ -982,6 +1001,57 @@
     white-space: nowrap;
   }
 
+  /* Grilla de equipo (retratos sobre negro) */
+  .equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(10px, 2vw, 28px);
+  }
+
+  .miembro { margin: 0; }
+
+  .miembro .retrato {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .miembro .retrato img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top center;
+    filter: grayscale(1) contrast(1.05);
+    opacity: 0.9;
+    transition: transform 0.6s var(--ease), opacity 0.4s var(--ease);
+  }
+
+  .miembro:hover .retrato img { transform: scale(1.03); opacity: 1; }
+
+  .miembro figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 16px;
+  }
+
+  .miembro .nombre {
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .miembro .rol {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gris);
+  }
+
+  @media (max-width: 920px) { .equipo-grid { grid-template-columns: repeat(2, 1fr); } }
+
   /* ============================================================
      10 · FOOTER
      ============================================================ */
@@ -1156,8 +1226,10 @@
 
 <!-- 00 · INTRO -->
 <div class="coldopen" id="intro">
-  <!-- Cuando tengas el video: descomentá y poné el path. El fallback de imagen se desactiva solo. -->
-  <!-- <video id="intro-video" autoplay muted playsinline preload="auto" src="./intro.mp4"></video> -->
+  <video id="intro-video" autoplay muted playsinline preload="auto" poster="./latm-crowd.jpg">
+    <source src="./intro-mobile.mp4" media="(max-width: 760px)" type="video/mp4">
+    <source src="./intro-desktop.mp4" type="video/mp4">
+  </video>
   <div class="intro-img" id="intro-img"></div>
   <div class="velo"></div>
   <div class="marca">
@@ -1297,12 +1369,15 @@
     <div class="brands reveal">
       <p class="label">Han confiado en nosotros</p>
       <div class="logos">
-        <span class="b-meli">mercado libre</span>
-        <span class="b-on">ON</span>
-        <span class="b-nike">Nike</span>
-        <span class="b-river">RIVER</span>
-        <span class="b-disney">Disney+</span>
-        <span class="b-star">Star+</span>
+        <a href="#" aria-label="Coca-Cola"><img src="./logo-cocacola.png" alt="Coca-Cola" loading="lazy"></a>
+        <a href="#" aria-label="Disney+"><img src="./logo-disney.png" alt="Disney+" loading="lazy"></a>
+        <a href="#" aria-label="Google"><img src="./logo-google.png" alt="Google" loading="lazy"></a>
+        <a href="#" aria-label="McDonald's"><img src="./logo-mcdonalds.png" alt="McDonald's" loading="lazy"></a>
+        <a href="#" aria-label="Under Armour"><img src="./logo-underarmour.png" alt="Under Armour" loading="lazy"></a>
+        <a href="#" aria-label="Hennessy"><img src="./logo-hennessy.png" alt="Hennessy" loading="lazy"></a>
+        <a href="#" aria-label="Chandon"><img src="./logo-chandon.png" alt="Chandon" loading="lazy"></a>
+        <a href="#" aria-label="WeWork"><img src="./logo-wework.png" alt="WeWork" loading="lazy"></a>
+        <a href="#" aria-label="Sura"><img src="./logo-sura.png" alt="Sura" loading="lazy"></a>
       </div>
     </div>
   </div>
@@ -1351,6 +1426,9 @@
 
 <!-- 07 · BANNER INTERMEDIO -->
 <section class="banner-mid">
+  <video class="bg-video" autoplay muted loop playsinline preload="none" poster="./banner-tommy.jpg">
+    <source src="./loop-bg.mp4" type="video/mp4">
+  </video>
   <div class="bg"></div>
   <div class="overlay"></div>
   <p class="frase reveal">Producimos los eventos que la gente recuerda.</p>
@@ -1454,37 +1532,41 @@
 </section>
 
 <!-- 09 · EQUIPO -->
-<section class="seccion clara" id="equipo">
+<section class="seccion equipo" id="equipo">
   <div class="inner">
     <div class="cabecera reveal">
       <div>
         <p class="eyebrow">El equipo — Detrás de todo</p>
-        <h2 class="titulo">Cuatro personas, una marca.</h2>
+        <h2 class="titulo">Las personas que arman la fiesta.</h2>
       </div>
-      <p class="intro">Estructura chica, criterio grande. Cada evento, cada curso y cada fecha de LaTM pasa por estas cuatro manos.</p>
+      <p class="intro">Detrás de cada evento, cada curso y cada fecha de LaTM hay un equipo que vive la música. Estos son.</p>
     </div>
 
-    <div class="reveal" style="border-top: 1px solid var(--linea);">
-      <div class="persona">
-        
-        <span class="nombre">Tommy Muñoz</span>
-        <span class="rol">Fundador · DJ Principal</span>
-      </div>
-      <div class="persona">
-        
-        <span class="nombre">Toto DJ</span>
-        <span class="rol">DJ</span>
-      </div>
-      <div class="persona">
-        
-        <span class="nombre">Agus</span>
-        <span class="rol">Dirección de marketing</span>
-      </div>
-      <div class="persona">
-        
-        <span class="nombre">Blas</span>
-        <span class="rol">Administración</span>
-      </div>
+    <div class="equipo-grid reveal">
+      <figure class="miembro">
+        <div class="retrato"><img src="./team-01.png" alt="Miembro del equipo TM" loading="lazy"></div>
+        <figcaption><span class="nombre">Tommy Muñoz</span><span class="rol">Fundador · DJ Principal</span></figcaption>
+      </figure>
+      <figure class="miembro">
+        <div class="retrato"><img src="./team-02.png" alt="Miembro del equipo TM" loading="lazy"></div>
+        <figcaption><span class="nombre">Toto DJ</span><span class="rol">DJ</span></figcaption>
+      </figure>
+      <figure class="miembro">
+        <div class="retrato"><img src="./team-03.png" alt="Miembro del equipo TM" loading="lazy"></div>
+        <figcaption><span class="nombre">Agus</span><span class="rol">Dirección de marketing</span></figcaption>
+      </figure>
+      <figure class="miembro">
+        <div class="retrato"><img src="./team-04.png" alt="Miembro del equipo TM" loading="lazy"></div>
+        <figcaption><span class="nombre">Blas</span><span class="rol">Administración</span></figcaption>
+      </figure>
+      <figure class="miembro">
+        <div class="retrato"><img src="./team-05.png" alt="Miembro del equipo TM" loading="lazy"></div>
+        <figcaption><span class="nombre">Nombre 05</span><span class="rol">Rol a confirmar</span></figcaption>
+      </figure>
+      <figure class="miembro">
+        <div class="retrato"><img src="./team-06.png" alt="Miembro del equipo TM" loading="lazy"></div>
+        <figcaption><span class="nombre">Nombre 06</span><span class="rol">Rol a confirmar</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
