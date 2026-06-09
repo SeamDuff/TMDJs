@@ -1209,3 +1209,41 @@
 
     .footer .grid { grid-template-columns: 1fr; }
   }
+
+
+/* ============================================================
+   LaTM · Mapa de la gira (A1)
+   ============================================================ */
+.latm-mapa { margin: clamp(48px,7vh,80px) 0; }
+.latm-mapa .mapa-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gris-suave); margin-bottom: 20px;
+}
+.mapa-wrap {
+  position: relative; width: 100%;
+  border: 1px solid var(--linea); background: rgba(6,5,4,.45); overflow: visible;
+}
+.mapa-wrap svg { display: block; width: 100%; height: auto; }
+.mapa-wrap .land { fill: none; stroke: rgba(255,255,255,.2); stroke-width: .6; vector-effect: non-scaling-stroke; }
+.mapa-wrap .route { fill: none; stroke: rgba(255,255,255,.16); stroke-width: 1; stroke-dasharray: 2 4; vector-effect: non-scaling-stroke; }
+.mapa-wrap .layer { position: absolute; inset: 0; }
+.mapa-wrap .mk { position: absolute; width: 10px; height: 10px; transform: translate(-50%,-50%); cursor: pointer; transition: opacity .3s var(--ease); }
+.mapa-wrap .mk .dot { position: absolute; inset: 0; border-radius: 50%; background: #fff; transition: transform .3s var(--ease); }
+.mapa-wrap .mk .ring { position: absolute; inset: -6px; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; animation: pulse-mk 2.4s var(--ease) infinite; }
+@keyframes pulse-mk { 0% { transform: scale(.5); opacity: .9; } 100% { transform: scale(1.8); opacity: 0; } }
+.mapa-wrap .mk:hover .dot { transform: scale(1.4); }
+.mapa-wrap .mk.dim { opacity: .22; }
+.mapa-wrap .card {
+  position: absolute; left: 50%; bottom: calc(100% + 14px);
+  transform: translateX(-50%) translateY(6px); width: 230px;
+  background: rgba(10,9,8,.96); border: 1px solid var(--linea); padding: 16px 18px;
+  opacity: 0; pointer-events: none; text-align: left; z-index: 5; backdrop-filter: blur(6px);
+  transition: opacity .25s var(--ease), transform .25s var(--ease);
+}
+.mapa-wrap .card.abajo { bottom: auto; top: calc(100% + 14px); transform: translateX(-50%) translateY(-6px); }
+.mapa-wrap .mk:hover .card { opacity: 1; transform: translateX(-50%) translateY(0); }
+.mapa-wrap .card .fecha { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--gris); margin-bottom: 8px; }
+.mapa-wrap .card .ciudad { font-size: 20px; font-weight: 800; letter-spacing: -.02em; line-height: 1.05; margin-bottom: 6px; }
+.mapa-wrap .card .venue { font-size: 13px; color: var(--gris); margin-bottom: 2px; }
+.mapa-wrap .card .pais { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--gris-suave); margin-bottom: 14px; }
+.mapa-wrap .card .ent { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; display: inline-block; border: 1px solid var(--linea); padding: 8px 12px; color: #fff; }
