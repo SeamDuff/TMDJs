@@ -125,7 +125,7 @@
       '<svg viewBox="0 0 ' + MAP.w + ' ' + MAP.h + '">' +
         '<path class="grat" d="' + grat + '"/>' +
         '<path class="land" d="' + LAND_PATH + '"/>' +
-        '<path class="route" id="tour" pathLength="1" d="' + route + '"/>' +
+        '<path class="route" id="tour" d="' + route + '"/>' +
         '<circle class="comet" r="2.6"><animateMotion dur="6s" repeatCount="indefinite" begin="3s"><mpath href="#tour"/></animateMotion></circle>' +
         '<circle class="comet" r="1.8" opacity="0.5"><animateMotion dur="6s" repeatCount="indefinite" begin="3.25s"><mpath href="#tour"/></animateMotion></circle>' +
       '</svg>';
@@ -153,7 +153,16 @@
     });
     mapaWrap.appendChild(layer);
 
-    // hover = preview (CSS) · click = fija la tarjeta
+    // dibujar la ruta con su largo real (robusto, sin bugs de pathLength)
+    const routeEl = mapaWrap.querySelector('#tour');
+    if (routeEl) {
+      const len = routeEl.getTotalLength();
+      routeEl.style.strokeDasharray = len;
+      routeEl.style.strokeDashoffset = len;
+      void routeEl.getBoundingClientRect();
+      routeEl.style.transition = 'stroke-dashoffset 3.2s cubic-bezier(0.22,1,0.36,1) 0.4s';
+      requestAnimationFrame(() => { routeEl.style.strokeDashoffset = '0'; });
+    }
     const marcadores = [...layer.querySelectorAll('.mk')];
     const cerrarCards = () => marcadores.forEach(m => m.classList.remove('activo'));
     marcadores.forEach(mk => {
