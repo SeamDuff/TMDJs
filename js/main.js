@@ -174,6 +174,73 @@
     });
   });
 
+
+  // ============================================================
+  // Galerías por categoría (lightbox)
+  // Casamientos: 9 fotos del repo anterior (hosteadas en imgur).
+  // Para sumar una categoría: agregá su array acá y un
+  // <button class="ver-galeria"> dentro del <div class="item" data-gallery="...">.
+  // ============================================================
+  const GALERIAS = {
+    casamientos: [
+      'https://i.imgur.com/GGypMLC.jpg',
+      'https://i.imgur.com/TPaLCEc.jpg',
+      'https://i.imgur.com/CsRdBsj.jpg',
+      'https://i.imgur.com/IAJ8G0s.jpg',
+      'https://i.imgur.com/CRZHOWS.jpg',
+      'https://i.imgur.com/PHxtHhu.jpg',
+      'https://i.imgur.com/M1AOk9q.jpg',
+      'https://i.imgur.com/wYNq2FU.jpg',
+      'https://i.imgur.com/9AcxSxX.jpg',
+    ],
+  };
+
+  const lb = document.getElementById('lightbox');
+  if (lb) {
+    const lbImg = lb.querySelector('.lb-img');
+    const lbCount = lb.querySelector('.lb-count');
+    const lbTitle = lb.querySelector('.lb-title');
+    let lbList = [], lbIdx = 0;
+
+    const lbShow = i => {
+      lbIdx = (i + lbList.length) % lbList.length;
+      lbImg.src = lbList[lbIdx];
+      lbCount.textContent = (lbIdx + 1) + ' / ' + lbList.length;
+    };
+    const lbOpen = cat => {
+      lbList = GALERIAS[cat] || [];
+      if (!lbList.length) return;
+      lbTitle.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+      lbShow(0);
+      lb.classList.add('abierto');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+    const lbClose = () => {
+      lb.classList.remove('abierto');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.ver-galeria').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const cont = btn.closest('[data-gallery]');
+        if (cont) lbOpen(cont.dataset.gallery);
+      });
+    });
+    lb.querySelector('.lb-cerrar').addEventListener('click', lbClose);
+    lb.querySelector('.lb-prev').addEventListener('click', () => lbShow(lbIdx - 1));
+    lb.querySelector('.lb-next').addEventListener('click', () => lbShow(lbIdx + 1));
+    lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('abierto')) return;
+      if (e.key === 'Escape') lbClose();
+      else if (e.key === 'ArrowLeft') lbShow(lbIdx - 1);
+      else if (e.key === 'ArrowRight') lbShow(lbIdx + 1);
+    });
+  }
+
   // Form aviso (solo visual)
   document.getElementById('form-aviso').addEventListener('submit', (e) => {
     e.preventDefault();
