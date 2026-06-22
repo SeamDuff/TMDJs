@@ -123,10 +123,12 @@
     </div>
 
     <div class="items-lista reveal">
-      <div class="item">
+      <div class="item" data-gallery="casamientos">
         
         <span class="nombre">Casamientos</span>
-        <span class="det">Ceremonia, fiesta y after. Diseño musical exclusivo según el perfil de los novios.</span>
+        <span class="det">Ceremonia, fiesta y after. Diseño musical exclusivo según el perfil de los novios.
+          <button class="ver-galeria" type="button">Ver galería · 9 →</button>
+        </span>
         <a class="cta" href="https://wa.me/541158522740?text=Hola%2C%20quiero%20cotizar%20un%20casamiento" target="_blank" rel="noopener">COTIZAR →</a>
       </div>
       <div class="item">
@@ -261,7 +263,7 @@
     <div class="agenda reveal" id="agenda"></div>
 
     <div class="aviso reveal">
-      <h3>No te pierdas la próxima fecha cerca tuyo!</h3>
+      <h3>Avisame cuándo van a tu ciudad.</h3>
       <p>Dejanos tu mail y tu ciudad. Cuando LaTM tenga fecha cerca tuyo, sos de los primeros en enterarte.</p>
       <form id="form-aviso">
         <div class="campos">
@@ -289,27 +291,27 @@
     <div class="equipo-grid reveal">
       <figure class="miembro">
         <div class="retrato"><img src="img/team/team-01.png" alt="Miembro del equipo TM" loading="lazy"></div>
-        <figcaption><span class="nombre">Placeholder</span><span class="rol">Rol a confirmar</span></figcaption>
+        <figcaption><span class="nombre">Tommy Muñoz</span><span class="rol">Fundador · DJ Principal</span></figcaption>
       </figure>
       <figure class="miembro">
         <div class="retrato"><img src="img/team/team-02.png" alt="Miembro del equipo TM" loading="lazy"></div>
-        <figcaption><span class="nombre">Placeholder</span><span class="rol">Rol a confirmar</span></figcaption>
+        <figcaption><span class="nombre">Toto DJ</span><span class="rol">DJ</span></figcaption>
       </figure>
       <figure class="miembro">
         <div class="retrato"><img src="img/team/team-03.png" alt="Miembro del equipo TM" loading="lazy"></div>
-        <figcaption><span class="nombre">Placeholder</span><span class="rol">Rol a confirmar</span></figcaption>
+        <figcaption><span class="nombre">Agus</span><span class="rol">Dirección de marketing</span></figcaption>
       </figure>
       <figure class="miembro">
         <div class="retrato"><img src="img/team/team-04.png" alt="Miembro del equipo TM" loading="lazy"></div>
-        <figcaption><span class="nombre">Placeholder</span><span class="rol">Rol a confirmar</span></figcaption>
+        <figcaption><span class="nombre">Blas</span><span class="rol">Administración</span></figcaption>
       </figure>
       <figure class="miembro">
         <div class="retrato"><img src="img/team/team-05.png" alt="Miembro del equipo TM" loading="lazy"></div>
-        <figcaption><span class="nombre">Placeholder</span><span class="rol">Rol a confirmar</span></figcaption>
+        <figcaption><span class="nombre">Nombre 05</span><span class="rol">Rol a confirmar</span></figcaption>
       </figure>
       <figure class="miembro">
         <div class="retrato"><img src="img/team/team-06.png" alt="Miembro del equipo TM" loading="lazy"></div>
-        <figcaption><span class="nombre">Placeholder</span><span class="rol">Rol a confirmar</span></figcaption>
+        <figcaption><span class="nombre">Nombre 06</span><span class="rol">Rol a confirmar</span></figcaption>
       </figure>
     </div>
   </div>
@@ -361,6 +363,18 @@
 </a>
 
 <div class="badge-proto">Prototipo</div>
+
+<!-- LIGHTBOX galería -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lb-bar">
+    <span class="lb-title"></span>
+    <span class="lb-count"></span>
+    <button class="lb-cerrar" type="button" aria-label="Cerrar">×</button>
+  </div>
+  <button class="lb-prev" type="button" aria-label="Anterior">‹</button>
+  <img class="lb-img" alt="Galería de eventos">
+  <button class="lb-next" type="button" aria-label="Siguiente">›</button>
+</div>
 
 <script src="js/main.js"></script>
 
