@@ -286,7 +286,7 @@
 
     contCaps.querySelectorAll('.cinta-wrap').forEach(wrap => {
       const cinta = wrap.querySelector('.cinta');
-      let x = 1.5;                 // desplazamiento actual (px, negativo)
+      let x = 0;                 // desplazamiento actual (px, negativo)
       let mitad = 0;             // ancho de una vuelta (la lista sin duplicar)
       const velocidad = 0.4;     // px por frame (~24px/s a 60fps)
       let auto = !prefiereQuieto;
@@ -301,6 +301,17 @@
       const io = new IntersectionObserver(es => { visible = es[0].isIntersecting; },
         { threshold: 0 });
       io.observe(wrap);
+
+      // reveal de apertura: la cinta se despliega al entrar en pantalla
+      if (prefiereQuieto) {
+        wrap.classList.add('abierta');
+      } else {
+        const ioReveal = new IntersectionObserver(es => {
+          if (es[0].isIntersecting) { wrap.classList.add('abierta'); ioReveal.disconnect(); }
+        }, { threshold: 0.25 });
+        ioReveal.observe(wrap);
+        setTimeout(() => wrap.classList.add('abierta'), 1600); // respaldo
+      }
 
       // pausa al pasar el mouse (desktop)
       wrap.addEventListener('mouseenter', () => { auto = false; });
