@@ -286,7 +286,7 @@
 
     contCaps.querySelectorAll('.cinta-wrap').forEach(wrap => {
       const cinta = wrap.querySelector('.cinta');
-      let x = 0;                 // desplazamiento actual (px, negativo)
+      let x = 1.5;                 // desplazamiento actual (px, negativo)
       let mitad = 0;             // ancho de una vuelta (la lista sin duplicar)
       const velocidad = 0.4;     // px por frame (~24px/s a 60fps)
       let auto = !prefiereQuieto;
