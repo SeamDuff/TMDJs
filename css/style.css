@@ -1381,7 +1381,10 @@
 .cinta-wrap {
   position: relative; width: 100vw; margin-left: 50%; transform: translateX(-50%);
   overflow: hidden; cursor: grab; touch-action: pan-y;
+  clip-path: inset(46% 0 46% 0); opacity: 0;
+  transition: clip-path 1.1s var(--ease), opacity 1.1s var(--ease);
 }
+.cinta-wrap.abierta { clip-path: inset(0 0 0 0); opacity: 1; }
 .cinta-wrap.arrastrando { cursor: grabbing; }
 .cinta {
   display: flex; gap: 16px; width: max-content;
