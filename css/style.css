@@ -1358,71 +1358,61 @@
 }
 
 /* ============================================================
-   TM DJs · Capítulos por categoría (scroll → galería)
-   Fotos A COLOR (sin grayscale), por pedido del cliente.
+   TM DJs · Carrusel full-bleed por categoría
+   Riel continuo que se desliza solo + arrastre. A COLOR.
    ============================================================ */
-.cap { position: relative; border-top: 1px solid var(--linea); }
-.cap-sticky {
-  position: sticky; top: 0; height: 100vh; height: 100svh;
-  overflow: hidden; display: flex; flex-direction: column; justify-content: center;
-  padding: 0 clamp(20px, 4vw, 56px);
-}
-.cap-head {
+.cat { border-top: 1px solid var(--linea); padding: clamp(48px,7vh,84px) 0; overflow: hidden; }
+.cat-head {
   display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 32px; flex-wrap: wrap; margin-bottom: clamp(24px, 4vh, 44px);
+  gap: 28px; flex-wrap: wrap; margin-bottom: clamp(24px,4vh,40px);
+  padding: 0 clamp(20px,4vw,56px);
 }
-.cap-head .nom {
-  font-size: clamp(38px, 6vw, 80px); font-weight: 800;
-  letter-spacing: -.04em; line-height: 1;
+.cat-head .nom { font-size: clamp(38px,6vw,80px); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.cat-head .meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.cat-head .det { font-size: 14px; line-height: 1.6; color: var(--gris); max-width: 42ch; }
+.cat-head .cta {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  border: 1px solid var(--negro); padding: 12px 20px; color: var(--negro); text-decoration: none;
+  white-space: nowrap; transition: background .3s var(--ease), color .3s var(--ease);
 }
-.cap-head .meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-.cap-head .det { font-size: 14px; line-height: 1.6; color: var(--gris); max-width: 42ch; }
+.cat-head .cta:hover { background: var(--negro); color: #fff; }
 
-.cap-track { display: flex; gap: clamp(12px, 1.5vw, 24px); will-change: transform; }
-.cap-track figure {
-  position: relative; flex: 0 0 auto; margin: 0; overflow: hidden; background: #eee;
-  height: clamp(300px, 52vh, 560px);
+/* Viewport full-bleed: ocupa todo el ancho de la ventana */
+.cinta-wrap {
+  position: relative; width: 100vw; margin-left: 50%; transform: translateX(-50%);
+  overflow: hidden; cursor: grab; touch-action: pan-y;
 }
-.cap-track img, .cap-track video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.cap-track .g-l { width: clamp(300px, 44vw, 660px); }
-.cap-track .g-m { width: clamp(240px, 30vw, 440px); }
-.cap-track .g-p { width: clamp(200px, 22vw, 320px); }
-.cap-track figcaption {
-  position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px;
+.cinta-wrap.arrastrando { cursor: grabbing; }
+.cinta {
+  display: flex; gap: 16px; width: max-content;
+  will-change: transform;
+}
+.cinta figure {
+  position: relative; margin: 0; flex: 0 0 auto;
+  height: clamp(340px, 62vh, 640px);
+  aspect-ratio: 3 / 2; overflow: hidden; background: #eee;
+}
+.cinta figure.vert { aspect-ratio: 2 / 3; }
+.cinta img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  user-select: none; -webkit-user-drag: none; pointer-events: none;
+}
+.cinta figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 18px;
   font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
   color: #fff; background: linear-gradient(to top, rgba(0,0,0,.65), transparent);
   opacity: 0; transition: opacity .3s var(--ease);
 }
-.cap-track figure:hover figcaption { opacity: 1; }
+.cinta figure:hover figcaption { opacity: 1; }
 
-.cap-prog {
-  position: absolute; left: clamp(20px, 4vw, 56px); right: clamp(20px, 4vw, 56px);
-  bottom: clamp(28px, 5vh, 52px); height: 1px; background: var(--linea);
-}
-.cap-prog span { display: block; height: 100%; width: 0; background: var(--negro); }
-.cap-hint {
-  position: absolute; left: clamp(20px, 4vw, 56px); bottom: clamp(44px, 7vh, 72px);
-  font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--gris-suave);
-}
-.cap-vacia {
+.cat-vacia {
+  margin: 0 clamp(20px,4vw,56px);
   font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--gris-suave); border: 1px dashed var(--linea); padding: 40px; text-align: center;
+  color: var(--gris-suave); border: 1px dashed var(--linea); padding: 48px; text-align: center;
 }
 
-/* Mobile: sin scroll-hijacking. Carrusel con swipe nativo. */
 @media (max-width: 860px) {
-  .cap { height: auto !important; }
-  .cap-sticky { position: static; height: auto; padding: clamp(48px, 7vh, 72px) 0; }
-  .cap-head { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .cap-head .nom { font-size: 34px; }
-  .cap-track {
-    transform: none !important; overflow-x: auto; scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; padding-bottom: 8px;
-  }
-  .cap-track::-webkit-scrollbar { display: none; }
-  .cap-track figure { scroll-snap-align: center; height: 62vh; }
-  .cap-track .g-l, .cap-track .g-m, .cap-track .g-p { width: 82vw; }
-  .cap-prog { display: none; }
-  .cap-hint { position: static; margin-top: 14px; display: block; }
+  .cat-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .cat-head .nom { font-size: 34px; }
+  .cinta figure { height: 52vh; }
 }
