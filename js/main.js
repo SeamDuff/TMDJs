@@ -211,69 +211,122 @@
 
 
   // ============================================================
-  // Galerías por categoría (lightbox)
-  // Casamientos: 9 fotos del repo anterior (hosteadas en imgur).
-  // Para sumar una categoría: agregá su array acá y un
-  // <button class="ver-galeria"> dentro del <div class="item" data-gallery="...">.
+  // TM DJs — CATEGORÍAS Y SUS GALERÍAS  ·  FUENTE ÚNICA
+  // Para sumar fotos: agregá items al array de la categoría.
+  //   type: 'img'   -> foto
+  //   type: 'video' -> video (mismo riel, mismo tamaño)
+  // Las fotos van A COLOR (sin filtro), por pedido del cliente.
   // ============================================================
-  const GALERIAS = {
-    casamientos: [
-      'https://i.imgur.com/GGypMLC.jpg',
-      'https://i.imgur.com/TPaLCEc.jpg',
-      'https://i.imgur.com/CsRdBsj.jpg',
-      'https://i.imgur.com/IAJ8G0s.jpg',
-      'https://i.imgur.com/CRZHOWS.jpg',
-      'https://i.imgur.com/PHxtHhu.jpg',
-      'https://i.imgur.com/M1AOk9q.jpg',
-      'https://i.imgur.com/wYNq2FU.jpg',
-      'https://i.imgur.com/9AcxSxX.jpg',
-    ],
-  };
+  const CATEGORIAS = [
+    {
+      id: 'casamientos',
+      nombre: 'Casamientos',
+      det: 'Ceremonia, fiesta y after. Diseño musical exclusivo según el perfil de los novios.',
+      cta: 'https://wa.me/541158522740?text=Hola%2C%20quiero%20cotizar%20un%20casamiento',
+      items: [
+        { type:'img', src:'img/eventos/casamientos/02-salon-bolas.jpg',       cap:'Salón · Techo de esferas' },
+        { type:'img', src:'img/eventos/casamientos/03-novios.jpg',            cap:'El baile de los novios' },
+        { type:'img', src:'img/eventos/casamientos/01-pista-lasers.jpg',      cap:'Pista · Lásers' },
+        { type:'img', src:'img/eventos/casamientos/05-salon-chandeliers.jpg', cap:'Montaje · Arañas' },
+        { type:'img', src:'img/eventos/casamientos/04-techo-dorado.jpg',      cap:'Pista al atardecer' },
+        { type:'img', src:'img/eventos/casamientos/06-booth-dj.jpg',          cap:'Booth · Producción visual' },
+      ]
+    },
+    {
+      id: 'corporativos',
+      nombre: 'Corporativos',
+      det: 'Lanzamientos, activaciones de marca y eventos en venues como Bigg o River. Incluye "Be playing Disney", en partnership con Disney+ y Star+.',
+      cta: 'https://wa.me/541158522740?text=Hola%2C%20quiero%20cotizar%20un%20evento%20corporativo',
+      items: []
+    },
+    {
+      id: 'cumple15',
+      nombre: 'Cumpleaños 15',
+      det: 'DJs jóvenes, repertorio actualizado y coordinación total con la producción del evento.',
+      cta: 'https://wa.me/541158522740?text=Hola%2C%20quiero%20cotizar%20un%20cumplea%C3%B1os%20de%2015',
+      items: []
+    },
+    {
+      id: 'especiales',
+      nombre: 'Especiales',
+      det: 'Bodas internacionales, eventos privados, festivales y producciones a medida.',
+      cta: 'https://wa.me/541158522740?text=Hola%2C%20quiero%20cotizar%20un%20evento%20especial',
+      items: []
+    },
+  ];
 
-  const lb = document.getElementById('lightbox');
-  if (lb) {
-    const lbImg = lb.querySelector('.lb-img');
-    const lbCount = lb.querySelector('.lb-count');
-    const lbTitle = lb.querySelector('.lb-title');
-    let lbList = [], lbIdx = 0;
+  const RITMO = ['g-l','g-m','g-p','g-m','g-l','g-p'];
+  const contCaps = document.getElementById('capitulos');
 
-    const lbShow = i => {
-      lbIdx = (i + lbList.length) % lbList.length;
-      lbImg.src = lbList[lbIdx];
-      lbCount.textContent = (lbIdx + 1) + ' / ' + lbList.length;
-    };
-    const lbOpen = cat => {
-      lbList = GALERIAS[cat] || [];
-      if (!lbList.length) return;
-      lbTitle.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-      lbShow(0);
-      lb.classList.add('abierto');
-      lb.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    };
-    const lbClose = () => {
-      lb.classList.remove('abierto');
-      lb.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    };
+  if (contCaps) {
+    CATEGORIAS.forEach(cat => {
+      const sec = document.createElement('section');
+      sec.className = 'cap';
+      sec.id = 'cat-' + cat.id;
 
-    document.querySelectorAll('.ver-galeria').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        const cont = btn.closest('[data-gallery]');
-        if (cont) lbOpen(cont.dataset.gallery);
+      let cuerpo;
+      if (cat.items.length) {
+        const figs = cat.items.map((it, i) => {
+          const size = RITMO[i % RITMO.length];
+          const media = it.type === 'video'
+            ? '<video src="' + it.src + '" muted loop playsinline preload="metadata"></video>'
+            : '<img src="' + it.src + '" alt="' + cat.nombre + '" loading="lazy">';
+          return '<figure class="' + size + '">' + media +
+                 '<figcaption>' + it.cap + '</figcaption></figure>';
+        }).join('');
+        cuerpo = '<div class="cap-track">' + figs + '</div>' +
+                 '<span class="cap-hint">Seguí bajando →</span>' +
+                 '<div class="cap-prog"><span></span></div>';
+      } else {
+        cuerpo = '<div class="cap-vacia">Galería en preparación</div>';
+      }
+
+      sec.innerHTML =
+        '<div class="cap-sticky">' +
+          '<div class="cap-head">' +
+            '<span class="nom">' + cat.nombre + '</span>' +
+            '<div class="meta">' +
+              '<span class="det">' + cat.det + '</span>' +
+              '<a class="cta" href="' + cat.cta + '" target="_blank" rel="noopener">COTIZAR →</a>' +
+            '</div>' +
+          '</div>' + cuerpo +
+        '</div>';
+      contCaps.appendChild(sec);
+    });
+
+    // --- Scroll-driven: el riel se desplaza al bajar (solo desktop) ---
+    const caps = [...contCaps.querySelectorAll('.cap')];
+    const chico = () => window.matchMedia('(max-width: 860px)').matches;
+
+    function medirCaps() {
+      caps.forEach(cap => {
+        const track = cap.querySelector('.cap-track');
+        if (!track || chico()) { cap.style.height = ''; if (track) track.style.transform = ''; return; }
+        const sobra = Math.max(0, track.scrollWidth - track.clientWidth);
+        cap.dataset.sobra = sobra;
+        cap.style.height = (window.innerHeight + sobra + window.innerHeight * 0.25) + 'px';
       });
-    });
-    lb.querySelector('.lb-cerrar').addEventListener('click', lbClose);
-    lb.querySelector('.lb-prev').addEventListener('click', () => lbShow(lbIdx - 1));
-    lb.querySelector('.lb-next').addEventListener('click', () => lbShow(lbIdx + 1));
-    lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
-    document.addEventListener('keydown', e => {
-      if (!lb.classList.contains('abierto')) return;
-      if (e.key === 'Escape') lbClose();
-      else if (e.key === 'ArrowLeft') lbShow(lbIdx - 1);
-      else if (e.key === 'ArrowRight') lbShow(lbIdx + 1);
-    });
+      moverCaps();
+    }
+
+    function moverCaps() {
+      if (chico()) return;
+      caps.forEach(cap => {
+        const track = cap.querySelector('.cap-track');
+        if (!track) return;
+        const barra = cap.querySelector('.cap-prog span');
+        const sobra = parseFloat(cap.dataset.sobra || 0);
+        const total = cap.offsetHeight - window.innerHeight;
+        const p = Math.min(1, Math.max(0, -cap.getBoundingClientRect().top / (total || 1)));
+        track.style.transform = 'translateX(' + (-p * sobra) + 'px)';
+        if (barra) barra.style.width = (p * 100) + '%';
+      });
+    }
+
+    window.addEventListener('scroll', () => requestAnimationFrame(moverCaps), { passive: true });
+    window.addEventListener('resize', medirCaps);
+    window.addEventListener('load', medirCaps);
+    medirCaps();
   }
 
   // Form aviso (solo visual)
