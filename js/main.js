@@ -222,12 +222,11 @@
       det: 'Ceremonia, fiesta y after. Diseño musical exclusivo según el perfil de los novios.',
       cta: 'https://wa.me/541158522740?text=Hola%2C%20quiero%20cotizar%20un%20casamiento',
       items: [
-        { src:'img/eventos/casamientos/02-salon-bolas.jpg',       orient:'h', cap:'Salón · Techo de esferas' },
-        { src:'img/eventos/casamientos/03-novios.jpg',            orient:'v', cap:'El baile de los novios' },
-        { src:'img/eventos/casamientos/01-pista-lasers.jpg',      orient:'v', cap:'Pista · Lásers' },
-        { src:'img/eventos/casamientos/05-salon-chandeliers.jpg', orient:'h', cap:'Montaje · Arañas' },
-        { src:'img/eventos/casamientos/04-techo-dorado.jpg',      orient:'v', cap:'Pista al atardecer' },
-        { src:'img/eventos/casamientos/06-booth-dj.jpg',          orient:'v', cap:'Booth · Producción visual' },
+        { src:'img/eventos/casamientos/casamiento-01-deco-dorado.jpg',      orient:'h', cap:'Cielo de esferas doradas' },
+        { src:'img/eventos/casamientos/casamiento-02-esferas-espejadas.jpg', orient:'h', cap:'Techo de espejos infinito' },
+        { src:'img/eventos/casamientos/casamiento-03-lounge-rombos.jpg',     orient:'h', cap:'Lounge · Cabaret en rojo' },
+        { src:'img/eventos/casamientos/casamiento-04-escenario-rombos.jpg',  orient:'h', cap:'Escenario · Rombos de luz' },
+        { src:'img/eventos/casamientos/casamiento-05-carpa-tul.jpg',         orient:'h', cap:'Pista bajo el dosel de tul' },
       ]
     },
     {
@@ -240,7 +239,16 @@
       id: 'cumple15', nombre: 'Cumpleaños 15',
       det: 'DJs jóvenes, repertorio actualizado y coordinación total con la producción del evento.',
       cta: 'https://wa.me/541158522740?text=Hola%2C%20quiero%20cotizar%20un%20cumplea%C3%B1os%20de%2015',
-      items: []
+      items: [
+        { src:'img/eventos/cumple15/q15-01-cielo-espejos.jpg',       orient:'h', cap:'Cielo de espejos' },
+        { src:'img/eventos/cumple15/q15-02-laseres-tropicales.jpg',  orient:'h', cap:'Pista · Lásers tropicales' },
+        { src:'img/eventos/cumple15/q15-03-aros-de-luz.jpg',         orient:'h', cap:'Salón · Aros de luz' },
+        { src:'img/eventos/cumple15/q15-04-escenario-principal.jpg', orient:'h', cap:'Escenario principal' },
+        { src:'img/eventos/cumple15/q15-05-bosque-encantado.jpg',    orient:'h', cap:'Bosque encantado' },
+        { src:'img/eventos/cumple15/q15-06-neon-velas.jpg',          orient:'h', cap:'Neón & velas' },
+        { src:'img/eventos/cumple15/q15-07-montaje-turquesa.jpg',    orient:'h', cap:'Montaje turquesa' },
+        { src:'img/eventos/cumple15/q15-08-vista-ciudad.jpg',        orient:'h', cap:'Vista a la ciudad' },
+      ]
     },
     {
       id: 'especiales', nombre: 'Especiales',
