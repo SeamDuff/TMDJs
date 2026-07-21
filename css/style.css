@@ -1392,10 +1392,14 @@
 }
 .cinta figure {
   position: relative; margin: 0; flex: 0 0 auto;
-  height: clamp(340px, 62vh, 640px);
-  aspect-ratio: 3 / 2; overflow: hidden; background: #eee;
+  height: clamp(340px, 66vh, 680px);
+  /* PEEK: la protagonista ocupa ~82vw; la siguiente asoma al costado.
+     El ancho se ata al alto para mantener ~3:2 sin deformar en pantallas anchas. */
+  width: min(82vw, calc(66vh * 1.5));
+  overflow: hidden; background: #111;
 }
-.cinta figure.vert { aspect-ratio: 2 / 3; }
+/* legacy: ya no usamos verticales, pero por si queda alguna referencia */
+.cinta figure.vert { width: min(82vw, calc(66vh * 1.5)); }
 .cinta img {
   display: block; width: 100%; height: 100%; object-fit: cover;
   user-select: none; -webkit-user-drag: none; pointer-events: none;
@@ -1417,5 +1421,8 @@
 @media (max-width: 860px) {
   .cat-head { flex-direction: column; align-items: flex-start; gap: 14px; }
   .cat-head .nom { font-size: 34px; }
-  .cinta figure { height: 52vh; }
-}
+  .cinta { gap: 10px; }
+  .cinta figure {
+    height: 48vh;
+    /* en mobile el peek es más marcado: protagonista ~88vw, la próxima insinúa ~12vw */
+    width:
