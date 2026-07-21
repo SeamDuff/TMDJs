@@ -1425,4 +1425,6 @@
   .cinta figure {
     height: 48vh;
     /* en mobile el peek es más marcado: protagonista ~88vw, la próxima insinúa ~12vw */
-    width:
+    width: min(88vw, calc(48vh * 1.5));
+  }
+}
