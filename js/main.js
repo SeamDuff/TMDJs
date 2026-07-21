@@ -240,14 +240,14 @@
       det: 'DJs jóvenes, repertorio actualizado y coordinación total con la producción del evento.',
       cta: 'https://wa.me/541158522740?text=Hola%2C%20quiero%20cotizar%20un%20cumplea%C3%B1os%20de%2015',
       items: [
-        { src:'img/eventos/cumple15/q15-01-cielo-espejos.jpg',       orient:'h', cap:'Cielo de espejos' },
-        { src:'img/eventos/cumple15/q15-02-laseres-tropicales.jpg',  orient:'h', cap:'Pista · Lásers tropicales' },
-        { src:'img/eventos/cumple15/q15-03-aros-de-luz.jpg',         orient:'h', cap:'Salón · Aros de luz' },
-        { src:'img/eventos/cumple15/q15-04-escenario-principal.jpg', orient:'h', cap:'Escenario principal' },
+        { src:'img/eventos/cumple15/q15-01-cielo-espejos.JPG',       orient:'h', cap:'Cielo de espejos' },
+        { src:'img/eventos/cumple15/q15-02-laseres-tropicales.JPG',  orient:'h', cap:'Pista · Lásers tropicales' },
+        { src:'img/eventos/cumple15/q15-03-aros-de-luz.JPG',         orient:'h', cap:'Salón · Aros de luz' },
+        { src:'img/eventos/cumple15/q15-04-escenario-principal.JPG', orient:'h', cap:'Escenario principal' },
         { src:'img/eventos/cumple15/q15-05-bosque-encantado.jpg',    orient:'h', cap:'Bosque encantado' },
         { src:'img/eventos/cumple15/q15-06-neon-velas.jpg',          orient:'h', cap:'Neón & velas' },
-        { src:'img/eventos/cumple15/q15-07-montaje-turquesa.jpg',    orient:'h', cap:'Montaje turquesa' },
-        { src:'img/eventos/cumple15/q15-08-vista-ciudad.jpg',        orient:'h', cap:'Vista a la ciudad' },
+        { src:'img/eventos/cumple15/q15-07-montaje-turquesa.JPG',    orient:'h', cap:'Montaje turquesa' },
+        { src:'img/eventos/cumple15/q15-08-vista-ciudad.JPG',        orient:'h', cap:'Vista a la ciudad' },
       ]
     },
     {
