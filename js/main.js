@@ -171,6 +171,18 @@
       mk.dataset.grupo = p.grupo;
       mk.style.left = ((p.x - VB.x) / VB.w * 100) + '%';
       mk.style.top  = ((p.y - VB.y) / VB.h * 100) + '%';
+      const NUDGE = {
+        'Buenos Aires': [-10, -2],
+        'La Plata':     [2, 20],
+        'Rosario':      [-6, -20],
+        'Montevideo':   [16, 8],
+        'Punta del Este': [26, 20],
+      };
+      const off = NUDGE[p.ciudad];
+      if (off) {
+        mk.style.marginLeft = off[0] + 'px';
+        mk.style.marginTop  = off[1] + 'px';
+      }
       const abajo = (p.y / MAP.h) < 0.3 ? ' abajo' : '';
       mk.innerHTML =
         '<span class="glow"></span><span class="ring"></span><span class="dot"></span>' +
