@@ -129,7 +129,6 @@
   // Un marcador por CIUDAD: agrupa todas sus fechas en una sola tarjeta.
   // La ruta une ciudades únicas, en el orden en que la gira las visita.
   const mapaWrap = document.getElementById('latm-mapa');
-  const VB = { x: 150, y: 300, w: 480, h: 300 };
   if (mapaWrap) {
     // agrupar SHOWS por ciudad, conservando el orden cronológico de aparición
     const ciudades = [];
@@ -158,7 +157,7 @@
     for (let lat = -40; lat <= 60; lat += 20) grat += 'M0,' + projY(lat).toFixed(0) + ' L' + MAP.w + ',' + projY(lat).toFixed(0) + ' ';
 
     mapaWrap.innerHTML =
-      '<svg viewBox="' + VB.x + ' ' + VB.y + ' ' + VB.w + ' ' + VB.h + '">' +
+      '<svg viewBox="0 0 ' + MAP.w + ' ' + MAP.h + '">' +
         '<path class="grat" d="' + grat + '"/>' +
         '<path class="land" d="' + LAND_PATH + '"/>' +
       '</svg>';
@@ -169,20 +168,8 @@
       const mk = document.createElement('div');
       mk.className = 'mk' + (p.prox ? ' prox' : '') + (p.fechas.length > 1 ? ' multi' : '');
       mk.dataset.grupo = p.grupo;
-      mk.style.left = ((p.x - VB.x) / VB.w * 100) + '%';
-      mk.style.top  = ((p.y - VB.y) / VB.h * 100) + '%';
-      const NUDGE = {
-        'Buenos Aires': [-10, -2],
-        'La Plata':     [2, 20],
-        'Rosario':      [-6, -20],
-        'Montevideo':   [16, 8],
-        'Punta del Este': [26, 20],
-      };
-      const off = NUDGE[p.ciudad];
-      if (off) {
-        mk.style.marginLeft = off[0] + 'px';
-        mk.style.marginTop  = off[1] + 'px';
-      }
+      mk.style.left = (p.x / MAP.w * 100) + '%';
+      mk.style.top  = (p.y / MAP.h * 100) + '%';
       const abajo = (p.y / MAP.h) < 0.3 ? ' abajo' : '';
       mk.innerHTML =
         '<span class="glow"></span><span class="ring"></span><span class="dot"></span>' +
