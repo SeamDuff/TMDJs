@@ -259,7 +259,11 @@
       id: 'corporativos', nombre: 'Corporativos',
       det: 'Lanzamientos, activaciones de marca y eventos en venues como Bigg o River. Incluye "Be playing Disney", en partnership con Disney+ y Star+.',
       cta: 'https://wa.me/541158522740?text=Hola%2C%20quiero%20cotizar%20un%20evento%20corporativo',
-      items: []
+      items: [
+        { src:'img/eventos/casamientos/casamiento-02-esferas-espejadas.jpg', orient:'h', cap:'Producción · Techo de espejos' },
+        { src:'img/eventos/cumpleanos15/q15-04-escenario-principal.JPG',         orient:'h', cap:'Escenario principal' },
+        { src:'img/eventos/cumpleanos15/q15-07-montaje-turquesa.JPG',            orient:'h', cap:'Montaje · Puesta LED' },
+      ]
     },
     {
       id: 'cumpleanos15', nombre: 'Cumpleaños 15',
