@@ -327,10 +327,10 @@
   .hero .bg {
     position: absolute;
     inset: 0;
-    background-image: url('../img/hero-tommy.jpg');
+    background-image: url('../img/eventos/cumple15/q15-01-cielo-espejos.JPG');
     background-size: cover;
-    background-position: center 30%;
-    filter: grayscale(1) contrast(1.05);
+    background-position: center;
+    filter: contrast(1.02);
     z-index: 0;
   }
 
@@ -372,6 +372,11 @@
     text-transform: uppercase;
     opacity: 0;
     animation: subir 1.1s var(--ease) 0.25s forwards;
+  }
+
+  .hero h1.tm-logo {
+    font-size: clamp(140px, 30vw, 460px);
+    line-height: 0.85;
   }
 
   .hero .sub {
