@@ -1484,3 +1484,40 @@
 .mapa-wrap .mk.multi .dot { transform: scale(1.25); }
 .mapa-wrap .mk.multi:hover .dot,
 .mapa-wrap .mk.multi.activo .dot { transform: scale(1.6); }
+
+/* ============================================================
+   LOGO TM (SVG) — reemplaza el texto en intro, nav, hero, banner
+   ============================================================ */
+
+/* Intro — logo con texto, grande y centrado */
+.coldopen .marca .logo-intro {
+  width: clamp(200px, 34vw, 460px);
+  height: auto;
+  opacity: 0;
+  animation: subir 1.2s var(--ease) 0.4s forwards;
+}
+
+/* Nav — solo TM, chico, alineado a la barra */
+.nav .logo .logo-nav {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+/* Hero — logo con texto, protagonista */
+.hero .logo-hero {
+  width: clamp(280px, 46vw, 720px);
+  height: auto;
+  opacity: 0;
+  animation: subir 1.1s var(--ease) 0.25s forwards;
+}
+
+/* Banner intermedio — solo TM, gigante */
+.banner-mid .banner-logo .logo-banner {
+  width: clamp(200px, 40vw, 560px);
+  height: auto;
+}
+
+@media (max-width: 760px) {
+  .nav .logo .logo-nav { height: 22px; }
+}
