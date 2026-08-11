@@ -1521,3 +1521,11 @@
 @media (max-width: 760px) {
   .nav .logo .logo-nav { height: 22px; }
 }
+
+/* Footer — logo TM */
+.footer .marca .logo-footer {
+  width: clamp(80px, 12vw, 120px);
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+}
